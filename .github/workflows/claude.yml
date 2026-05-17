@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 1
 
       - name: Project Setup
-        run: 
+        run: |
           npm run setup
           npm run dev:daemon
 
@@ -42,22 +42,21 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
 
-          custom_instructions:
-            The prject is already set up with all dependencies installed.
-            The server is already running at localhost:3000. logs from it are begin written to logs.txt.
-            if needed, you can query the db with the 'sqlite3' cli. if needed, use the mcp__playwright 
-            set of tools to launch a broswer and interact with the app.
-
-         mcp_config:
-           {
-             "mcpServers": {
-               "playwright": {
-                 "command": "npx",
-                 "args": [
-                   "@playwright/mcp@latest",
-                   "--allowed-origins",
-                   "localhost:3000;cdn.tailwindcss.com;esm.sh"
+          custom_instructions: |
+            The project is already set up with all dependencies installed.
+            The server is already running at localhost:3000. Logs from it are being written to logs.txt.
+            If needed, you can query the db with the 'sqlite3' cli. If needed, use the mcp__playwright
+            set of tools to launch a browser and interact with the app.
+          mcp_config: |
+            {
+              "mcpServers": {
+                "playwright": {
+                  "command": "npx",
+                  "args": [
+                    "@playwright/mcp@latest",
+                    "--allowed-origins",
+                    "localhost:3000;cdn.tailwindcss.com;esm.sh"
                   ]
-               }
-             }
-           }
+                }
+              }
+            }
