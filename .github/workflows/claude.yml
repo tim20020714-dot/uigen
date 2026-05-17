@@ -48,6 +48,7 @@ jobs:
             The server is already running at localhost:3000. Logs from it are being written to logs.txt.
             If needed, you can query the db with the 'sqlite3' cli. If needed, use the mcp__playwright
             set of tools to launch a browser and interact with the app.
+          allowed_tools: "mcp__playwright__browser_navigate,mcp__playwright__browser_snapshot,mcp__playwright__browser_click"
           mcp_config: |
             {
               "mcpServers": {
